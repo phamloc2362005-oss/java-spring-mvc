@@ -1,41 +1,42 @@
 package vn.hoidanit.laptopshop.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.hoidanit.laptopshop.service.UserService;
 
-
 @Controller
 public class UserController {
 
-        //dependency injection
+    // dependency injection
     private UserService userService;
 
     public UserController(UserService userService) {
         this.userService = userService;
     }
-    
+
     @RequestMapping("/")
-    public String getHomePage(){
+    public String getHomePage(Model model) {
         String test = this.userService.handleHello();
-        return "hello";  
+        model.addAttribute("loc", test);
+        model.addAttribute("locfuho", "from controller with model");
+        return "hello";
     }
 }
 
 // @RestController
 // public class UserController {
-    
-//     //dependency injection
-//     private UserService userService;
 
-//     public UserController(UserService userService) {
-//         this.userService = userService;
-//     }
+// //dependency injection
+// private UserService userService;
 
+// public UserController(UserService userService) {
+// this.userService = userService;
+// }
 
-//     @GetMapping("")
-//     public String getHomePage(){
-//         return this.userService.handleHello();  
-//     }
+// @GetMapping("")
+// public String getHomePage(){
+// return this.userService.handleHello();
+// }
 // }
