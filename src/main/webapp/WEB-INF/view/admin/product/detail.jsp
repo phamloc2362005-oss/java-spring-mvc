@@ -33,43 +33,25 @@
                                     <div class="row">
                                         <div class="col-md-12 mx-auto">
                                             <div class="header d-flex justify-content-between">
-                                                <h3>Table products</h3>
-                                                <a href="/admin/product/create" class="btn btn-primary">
-                                                    Create a product</a>
+                                                <h3>Products detail with id = ${id}</h3>
                                             </div>
                                             <hr>
-                                            <table class="table table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID</th>
-                                                        <th>Name</th>
-                                                        <th>Price</th>
-                                                        <th>Factory</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <c:forEach var="product" items="${allProduct}">
-                                                        <tr>
-                                                            <th>${product.id}</th>
-                                                            <td>${product.name}</td>
-                                                            <td>${product.price}</td>
-                                                            <td>${product.factory}</td>
-                                                            <td>
-                                                                <a href="/admin/product/${product.id}"
-                                                                    class="btn btn-success">View</a>
-                                                                <a href="/admin/product/update/${product.id}"
-                                                                    class="btn btn-warning">Update</a>
-                                                                <a href="/admin/product/delete/${product.id}"
-                                                                    class="btn btn-danger">Delete</a>
-                                                            </td>
-                                                        </tr>
+                                            <div class="card" style="width: 60%;">
+                                                <div class="card-header">
+                                                    Product information
+                                                </div>
+                                                <ul class="list-group list-group-flush">
+                                                    <li class="list-group-item">ID: ${product.id}</li>
+                                                    <li class="list-group-item">Name: ${product.name}</li>
+                                                    <li class="list-group-item">Price: ${product.price}</li>
+                                                </ul>
+                                            </div>
 
-                                                    </c:forEach>
-
-                                                </tbody>
-                                            </table>
+                                            <a href="/admin/product" class="btn btn-success mt-3">Back</a>
                                         </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
