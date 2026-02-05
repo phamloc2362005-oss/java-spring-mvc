@@ -64,9 +64,9 @@
                                                         <form:errors path="detailDesc" cssClass="invalid-feedback" />
                                                     </c:set>
                                                     <label class="form-label">Detail description:</label>
-                                                    <textarea name="" id=""
+                                                    <form:textarea
                                                         class="form-control ${not empty errorDetail ? 'is-invalid' : ''}"
-                                                        path="detailDesc"></textarea>
+                                                        path="detailDesc" />
                                                     ${errorDetail}
                                                 </div>
                                                 <div class="mb-3 col-12 col-md-6">

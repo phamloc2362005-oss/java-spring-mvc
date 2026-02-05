@@ -56,7 +56,7 @@ public class ProductController {
             return "/admin/product/create";
         }
 
-        String image = this.uploadService.handleSaveUploadFile(file, "imageProduct");
+        String image = this.uploadService.handleSaveUploadFile(file, "product");
         newProduct.setImage(image);
         this.productService.handleSaveProduct(newProduct);
         return "redirect:/admin/product";
@@ -78,13 +78,27 @@ public class ProductController {
     }
 
     @PostMapping("/admin/product/update")
-    public String postUpdateUser(Model model, @ModelAttribute("newProduct") Product newProduct) {
-        Product updateProduct = this.productService.getProductById(newProduct.getId());
+    public String postUpdateUser(Model model, @ModelAttribute("newProduct") @Valid Product product,
+            BindingResult newProductBindingResult,
+            @RequestParam("productFile") MultipartFile file) {
+
+        if (newProductBindingResult.hasErrors()) {
+            return "/admin/product/update";
+        }
+        Product updateProduct = this.productService.getProductById(product.getId());
+
         if (updateProduct != null) {
-            updateProduct.setName(newProduct.getName());
-            updateProduct.setPrice(newProduct.getPrice());
-            updateProduct.setDetailDesc(newProduct.getDetailDesc());
-            updateProduct.setShortDesc(newProduct.getShortDesc());
+            if (!file.isEmpty()) {
+                String img = this.uploadService.handleSaveUploadFile(file, "product");
+                updateProduct.setImage(img);
+            }
+            updateProduct.setName(product.getName());
+            updateProduct.setPrice(product.getPrice());
+            updateProduct.setQuantity(product.getQuantity());
+            updateProduct.setDetailDesc(product.getDetailDesc());
+            updateProduct.setShortDesc(product.getShortDesc());
+            updateProduct.setFactory(product.getFactory());
+            updateProduct.setTarget(product.getTarget());
             this.productService.handleSaveProduct(updateProduct);
         }
         return "redirect:/admin/product";

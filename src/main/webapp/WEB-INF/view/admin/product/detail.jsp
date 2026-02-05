@@ -11,7 +11,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="" />
                 <meta name="author" content="" />
-                <title>Dashboard - Loc Admin</title>
+                <title>${product.name}</title>
                 <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -37,6 +37,8 @@
                                             </div>
                                             <hr>
                                             <div class="card" style="width: 60%;">
+                                                <img src="/images/product/${product.image}" alt="Card image cap"
+                                                    class="card-img-top">
                                                 <div class="card-header">
                                                     Product information
                                                 </div>
