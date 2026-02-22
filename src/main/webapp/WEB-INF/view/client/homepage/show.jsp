@@ -20,7 +20,7 @@
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
                     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
                         rel="stylesheet">
-
+                    https://chatgpt.com/deep-research
                     <!-- Libraries Stylesheet -->
                     <link href="/client/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
                     <link href="/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
@@ -98,10 +98,20 @@
                                                                                 value="${product.price}" /> đ
 
                                                                         </p>
-                                                                        <a href="#"
-                                                                            class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                                class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                            Add to cart</a>
+                                                                        <form
+                                                                            action="/add-product-to-cart/${product.id}"
+                                                                            method="post" class="w-100">
+                                                                            <input type="hidden"
+                                                                                name="${_csrf.parameterName}"
+                                                                                value="${_csrf.token}" />
+                                                                            <button type="submit"
+                                                                                class="mx-auto btn border border-secondary rounded-pill px-3 text-primary d-flex align-items-center justify-content-center w-100 add-to-cart-btn">
+                                                                                <i
+                                                                                    class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                                Add to cart
+                                                                            </button>
+                                                                        </form>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
