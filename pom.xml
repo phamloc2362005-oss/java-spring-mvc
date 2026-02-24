@@ -82,6 +82,12 @@
         <artifactId>spring-session-jdbc</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 

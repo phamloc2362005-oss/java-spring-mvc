@@ -1,10 +1,17 @@
 package vn.hoidanit.laptopshop.controller.client;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -41,6 +48,25 @@ public class ItemController {
         HttpSession session = request.getSession(false);
         this.productService.hanldeRemoveCartDetail(id, session);
         return "redirect:/cart";
+    }
+
+    @GetMapping("/products")
+    public String getProducts(Model model, @RequestParam("page") Optional<String> pageOptional) {
+        int page = 1;
+        try {
+            if (pageOptional.isPresent()) {
+                page = Integer.parseInt(pageOptional.get());
+            }
+        } catch (Exception e) {
+
+        }
+        Pageable pageable = PageRequest.of(page - 1, 6);
+        Page<Product> prs = this.productService.fetchProducts(pageable);
+        List<Product> allProducts = prs.getContent();
+        model.addAttribute("allProducts", allProducts);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", prs.getTotalPages());
+        return "client/product/show";
     }
 
 }
